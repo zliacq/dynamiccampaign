@@ -1,0 +1,93 @@
+rowTransforms:
+    - expression: "#Make"
+      sourceColumns:
+          - name: Make
+            type: String
+      calculatedColumn:
+          name: category1
+          type: String
+    - expression: "#Model"
+      sourceColumns:
+          - name: Model
+            type: String
+      calculatedColumn:
+          name: category2
+          type: String
+    - expression: "#Year"
+      sourceColumns:
+          - name: Year
+            type: String
+      calculatedColumn:
+          name: category3
+          type: String
+    - expression: "#Type"
+      sourceColumns:
+          - name: Type
+            type: String
+      calculatedColumn:
+          name: category4
+          type: String
+    - expression: "#lower.Case(#Type)"
+      sourceColumns:
+          - name: Type
+            type: String
+      calculatedColumn:
+          name: category8
+          type: String
+    - expression: "#Type == 'Used' ? 'preowned' : (#Type == 'New' ? 'new' : null)"
+      sourceColumns:
+          - name: Type
+            type: String
+      calculatedColumn:
+          name: category9
+          type: String
+    - expression: "#endsWith(#Model, 'S') ? null : #Model"
+      sourceColumns:
+          - name: Model
+            type: String
+      calculatedColumn:
+          name: category16
+          type: String
+    - expression: "#endsWith(#Model, 'S') ? #Model : null"
+      sourceColumns:
+          - name: Model
+            type: String
+      calculatedColumn:
+          name: category14
+          type: String
+    - expression: "#replaceString(#Model, ' ', '_')"
+      sourceColumns:
+          - name: Model
+            type: String
+      calculatedColumn:
+          name: category15
+          type: String
+    - expression: "'[dyn uymm] - ' + 'used'"
+      sourceColumns:
+      calculatedColumn:
+          name: CampaignName
+          type: String
+    - expression: "'used - ' + #Year + ' - ' + #Make + ' - ' + #Model"
+      sourceColumns:
+          - name: Year
+            type: String
+          - name: Make
+            type: String
+          - name: Model
+            type: String
+      calculatedColumn:
+          name: AdGroupName
+          type: String
+    - expression: "#Dealer City"
+      sourceColumns:
+          - name: Dealer City
+            type: String
+      calculatedColumn:
+          name: category7
+          type: String
+
+filterOutRules:
+     - expression: "#Type != 'Used'"
+       sourceColumns:
+          - name: Type
+            type: String

@@ -1,0 +1,49 @@
+rowTransforms:
+    - expression: "#Type"
+      sourceColumns:
+          - columnName: Type
+            type: String
+      targetColumn: category4
+    - expression: "#lowerCase(#Type)"
+      sourceColumns:
+          - columnName: Type
+            type: String
+      targetColumn: category8
+    - expression: "#Type == 'Used' ? 'preowned' : (#Type == 'New' ? 'new' : null)"
+      sourceColumns:
+          - columnName: Type
+            type: String
+      targetColumn: category9
+    - expression: "#endWith(#Model, 'S') ? null : Model"
+      sourceColumns:
+          - columnName: Model
+            type: String
+      targetColumn: category16
+    - expression: "#endWith(#Model, 'S') ? Model : null"
+      sourceColumns:
+          - columnName: Model
+            type: String
+      targetColumn: category14
+    - expression: "#replaceString(#Model, ' ', '_')"
+      sourceColumns:
+          - columnName: Model
+            type: String
+      targetColumn: category15
+    - expression: "'[dyn uymm] - ' + used"
+      sourceColumns:
+      targetColumn: CampaignName
+    - expression: "'used - ' + #Year + ' - ' + #Make + ' - ' + #Model"
+      sourceColumns:
+          - columnName: Year
+            type: String
+          - columnName: Make
+            type: String
+          - columnName: Model
+            type: String
+      targetColumn: AdGroupName
+
+filterOutRules:
+     - expression: "#Type != 'Used'"
+          sourceColumns:
+              - columnName: Type
+                type: String
